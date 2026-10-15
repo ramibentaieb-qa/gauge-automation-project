@@ -26,11 +26,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
 
-    - name: Setup Gauge
-      uses: getgauge/setup-gauge@master
-      with:
-        gauge-version: latest
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Install Gauge CLI
+      run: |
+        curl -SsL https://downloads.getgauge.io/stable | sh
 
     - name: Run Gauge Tests
       run: mvn gauge:execute
