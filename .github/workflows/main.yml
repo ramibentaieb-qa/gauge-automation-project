@@ -26,10 +26,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
 
-    - name: Install Gauge CLI
+    - name: Install Gauge CLI Globally
       run: |
-        curl -SsL https://downloads.getgauge.io/stable | sh
-        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        curl -sL https://downloads.getgauge.io/distribution/gauge-latest-linux.x86_64.zip -o gauge.zip
+        sudo unzip -o gauge.zip -d /usr/local/bin/
+        sudo chmod +x /usr/local/bin/gauge
+        gauge --version
 
     - name: Run Gauge Tests
       run: mvn gauge:execute
