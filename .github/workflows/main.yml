@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up JDK 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: '17'
@@ -29,6 +29,7 @@ jobs:
     - name: Install Gauge CLI
       run: |
         curl -SsL https://downloads.getgauge.io/stable | sh
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
 
     - name: Run Gauge Tests
       run: mvn gauge:execute
@@ -38,5 +39,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: gauge-reports
-        path: reports/
+        path: target/gauge-results/
         retention-days: 30
