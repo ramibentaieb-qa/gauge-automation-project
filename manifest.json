@@ -1,0 +1,10 @@
+{
+  "Language": "java",
+  "Plugins": [
+    "java",
+    "html-report"
+  ],
+  "dependencies": [
+    "gauge-java (1.0.3)"
+  ]
+}
