@@ -32,13 +32,13 @@ public class BasePage {
     }
 
     protected void set(By locator, String text) {
-        WebElement element = waitForElementToBevisible(locator, 3);
+        WebElement element = waitForElementToBevisible(locator, 15);
         element.clear();
         element.sendKeys(text);
     }
 
     protected void click(By locator) {
-        WebElement element = waitForElementToBeClickable(locator, 3);
+        WebElement element = waitForElementToBeClickable(locator, 15);
         element.click();
     }
 

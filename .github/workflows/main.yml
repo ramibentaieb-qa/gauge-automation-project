@@ -40,5 +40,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: gauge-reports
-        path: target/gauge-results/
+        path: reports/
         retention-days: 30
