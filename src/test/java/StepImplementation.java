@@ -1,22 +1,16 @@
-import com.thoughtworks.gauge.AfterScenario;
-import com.thoughtworks.gauge.BeforeScenario;
-import com.thoughtworks.gauge.Step;
-import org.openqa.selenium.By;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.thoughtworks.gauge.AfterScenario;
+import com.thoughtworks.gauge.BeforeScenario;
+import com.thoughtworks.gauge.Step;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.time.Duration;
 
 public class StepImplementation {
 
@@ -44,7 +38,10 @@ public class StepImplementation {
         }
 
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+        if (ciEnv == null || !ciEnv.equalsIgnoreCase("true")) {
+            driver.manage().window().maximize();
+        }
+        
         basePage = new BasePage();
         basePage.setDriver(driver);
         loginPage = new LoginPage();
