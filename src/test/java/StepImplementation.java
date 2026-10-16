@@ -1,7 +1,12 @@
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.BeforeScenario;
@@ -41,7 +46,7 @@ public class StepImplementation {
         if (ciEnv == null || !ciEnv.equalsIgnoreCase("true")) {
             driver.manage().window().maximize();
         }
-        
+
         basePage = new BasePage();
         basePage.setDriver(driver);
         loginPage = new LoginPage();
@@ -52,6 +57,24 @@ public class StepImplementation {
     @Step("Navigate to login page")
     public void navigateToLoginPage() {
         driver.get(url);  
+
+        WebDriverWait wait = new WebDriverWait(
+            driver, Duration.ofSeconds(20)
+        );
+
+         wait.until(d ->
+        ((org.openqa.selenium.JavascriptExecutor) d)
+            .executeScript("return document.readyState")
+            .equals("complete")
+    );
+
+    System.out.println("Current URL: " + driver.getCurrentUrl());
+    System.out.println("Page title: " + driver.getTitle());
+     System.out.println(
+        "Email field exists: " +
+        !driver.findElements(By.id("email")).isEmpty()
+    );
+
     }
 
     @Step("Enter valid username <email> and password <password>")
