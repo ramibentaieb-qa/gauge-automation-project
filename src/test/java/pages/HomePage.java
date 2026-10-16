@@ -4,12 +4,12 @@ import org.openqa.selenium.By;
 
 public class HomePage extends BasePage{
     
-        private By pageTitle = By.cssSelector("h1[data-test='page-title']");
-        private By profileMenuButton = By.cssSelector("[data-test='nav-menu']");
-        private By signoutButton = By.cssSelector("[data-test='nav-sign-out']");
+        private By dashboardTitle = By.cssSelector(".oxd-topbar-header-title h6");
+        private By profileMenuButton = By.cssSelector(".oxd-topbar-header-userarea i");
+        private By signoutButton = By.cssSelector("[href='/web/index.php/auth/logout']");
 
-        public Boolean getPageTitle() {
-           return waitForElementToBevisible(pageTitle, 3).isDisplayed();
+        public Boolean getDashboardTitle() {
+           return waitForElementToBevisible(dashboardTitle, 3).isDisplayed();
         }
 
         public void openProfileMenu() {

@@ -1,8 +1,6 @@
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -24,7 +22,7 @@ public class StepImplementation {
     protected LoginPage loginPage;
     protected HomePage homePage;
 
-    private String url = "https://practicesoftwaretesting.com/auth/login";
+    private String url = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
 
     @BeforeScenario
     public void setUp() {
@@ -32,23 +30,23 @@ public class StepImplementation {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
 
-        String ciEnv = System.getenv("CI");
-            if (ciEnv != null && ciEnv.equalsIgnoreCase("true")) {
-            options.addArguments("--headless=new");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--disable-gpu");
-            options.addArguments("--window-size=1920,1080");
-            options.addArguments("--disable-blink-features=AutomationControlled");
-            options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-            options.setExperimentalOption("useAutomationExtension", false);
-            options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
-        }
+        // String ciEnv = System.getenv("CI");
+        //     if (ciEnv != null && ciEnv.equalsIgnoreCase("true")) {
+        //     options.addArguments("--headless=new");
+        //     options.addArguments("--no-sandbox");
+        //     options.addArguments("--disable-dev-shm-usage");
+        //     options.addArguments("--disable-gpu");
+        //     options.addArguments("--window-size=1920,1080");
+        //     options.addArguments("--disable-blink-features=AutomationControlled");
+        //     options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+        //     options.setExperimentalOption("useAutomationExtension", false);
+        //     options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
+        // }
 
         driver = new ChromeDriver(options);
-        if (ciEnv == null || !ciEnv.equalsIgnoreCase("true")) {
-            driver.manage().window().maximize();
-        }
+        // if (ciEnv == null || !ciEnv.equalsIgnoreCase("true")) {
+        //     driver.manage().window().maximize();
+        // }
 
         basePage = new BasePage();
         basePage.setDriver(driver);
@@ -79,22 +77,19 @@ public class StepImplementation {
 
     System.out.println("Current URL: " + driver.getCurrentUrl());
     System.out.println("Page title: " + driver.getTitle());
-     System.out.println(
-        "Email field exists: " +
-        !driver.findElements(By.id("email")).isEmpty()
-    );
+     
 
     }
 
-    @Step("Enter valid username <email> and password <password>")
-    public void enterCredentials(String email, String password) {
-        loginPage.enterEmail(email);
+    @Step("Enter valid username <username> and password <password>")
+    public void enterCredentials(String username, String password) {
+        loginPage.enterUsername(username);
         loginPage.enterPassword(password);
     }
 
-    @Step("Enter invalid username <wrongEmail> and password <wrongPassword>")
-    public void enterWrongCredentials(String wrongEmail, String wrongPassword) {
-        loginPage.enterEmail(wrongEmail);
+    @Step("Enter invalid username <wrongUsername> and password <wrongPassword>")
+    public void enterWrongCredentials(String wrongUsername, String wrongPassword) {
+        loginPage.enterUsername(wrongUsername);
         loginPage.enterPassword(wrongPassword);
     }
  
@@ -105,7 +100,7 @@ public class StepImplementation {
 
     @Step("Verify user is logged in successfully")
     public void verifyLogin() {
-        boolean isDisplayed = homePage.getPageTitle();
+        boolean isDisplayed = homePage.getDashboardTitle();
         assertTrue(isDisplayed, "Login failed!");
     }
 

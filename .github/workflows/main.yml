@@ -43,7 +43,7 @@ jobs:
       - name: Run Gauge Tests
         run: |
           xvfb-run -a mvn gauge:execute \
-            -Dbase.url="https://practicesoftwaretesting.com/auth/login"
+            -Dbase.url="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
 
       - name: Upload Test Reports
         if: always()
