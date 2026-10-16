@@ -1,10 +1,7 @@
-import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.BeforeScenario;
@@ -30,23 +27,7 @@ public class StepImplementation {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
 
-        // String ciEnv = System.getenv("CI");
-        //     if (ciEnv != null && ciEnv.equalsIgnoreCase("true")) {
-        //     options.addArguments("--headless=new");
-        //     options.addArguments("--no-sandbox");
-        //     options.addArguments("--disable-dev-shm-usage");
-        //     options.addArguments("--disable-gpu");
-        //     options.addArguments("--window-size=1920,1080");
-        //     options.addArguments("--disable-blink-features=AutomationControlled");
-        //     options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-        //     options.setExperimentalOption("useAutomationExtension", false);
-        //     options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
-        // }
-
         driver = new ChromeDriver(options);
-        // if (ciEnv == null || !ciEnv.equalsIgnoreCase("true")) {
-        //     driver.manage().window().maximize();
-        // }
 
         basePage = new BasePage();
         basePage.setDriver(driver);
@@ -57,28 +38,7 @@ public class StepImplementation {
 
     @Step("Navigate to login page")
     public void navigateToLoginPage() {
-        driver.get(url);  
-
-        if (driver.getTitle().contains("Just a moment")) {
-        throw new IllegalStateException(
-            "Cloudflare challenge detected; login page did not load."
-        );
-    }
-
-        WebDriverWait wait = new WebDriverWait(
-            driver, Duration.ofSeconds(20)
-        );
-
-         wait.until(d ->
-        ((org.openqa.selenium.JavascriptExecutor) d)
-            .executeScript("return document.readyState")
-            .equals("complete")
-    );
-
-    System.out.println("Current URL: " + driver.getCurrentUrl());
-    System.out.println("Page title: " + driver.getTitle());
-     
-
+        driver.get(url);
     }
 
     @Step("Enter valid username <username> and password <password>")
