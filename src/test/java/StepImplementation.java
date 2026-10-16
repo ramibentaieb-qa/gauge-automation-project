@@ -58,6 +58,12 @@ public class StepImplementation {
     public void navigateToLoginPage() {
         driver.get(url);  
 
+        if (driver.getTitle().contains("Just a moment")) {
+        throw new IllegalStateException(
+            "Cloudflare challenge detected; login page did not load."
+        );
+    }
+
         WebDriverWait wait = new WebDriverWait(
             driver, Duration.ofSeconds(20)
         );
