@@ -1,4 +1,4 @@
-[![Gauge Selenium CI Pipeline](https://github.com/ramibentaieb-qa/gauge-automation-project/actions/workflows/main.yml/badge.svg)](https://github.com/ramibentaieb-qa/gauge-automation-project/actions/workflows/main.yml) [![Gauge Badge](https://gauge.org/Gauge_Badge.svg)](https://gauge.org) [![CI](https://github.com/softwaremill/maven-badges/actions/workflows/ci.yml/badge.svg)](https://github.com/softwaremill/maven-badges/actions/workflows/ci.yml)
+[![Gauge Selenium CI Pipeline](https://github.com/ramibentaieb-qa/gauge-automation-project/actions/workflows/main.yml/badge.svg)](https://github.com/ramibentaieb-qa/gauge-automation-project/actions/workflows/main.yml) [![Gauge Badge](https://gauge.org/Gauge_Badge.svg)](https://gauge.org) 
 
 # Automated UI Testing Project
 I built this project to practice and showcase my skills in test automation. It uses Behavior-Driven Development (BDD) to test web applications automatically.
