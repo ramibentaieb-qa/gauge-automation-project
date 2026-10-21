@@ -1,3 +1,9 @@
+stages:
+  - test
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=C:/Users/RAMI/.m2/repository"
+
 test_job:
   stage: test
   script:
