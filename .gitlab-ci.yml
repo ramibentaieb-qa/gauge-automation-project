@@ -1,13 +1,7 @@
-stages:
-  - test
-
-variables:
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
-
 test_job:
   stage: test
   script:
-    - mvn gauge:execute -Dbase.url="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+    - "mvn gauge:execute '-Dbase.url=https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'"
   tags:
     - local-windows
   artifacts:
