@@ -1,9 +1,13 @@
 stages:
   - test
 
+variables:
+  GAUGE_HOME: "C:/Users/RAMI/.gauge"
+
 test_job:
   stage: test
   script:
+    - gauge install java
     - 'mvn gauge:execute "-Dbase.url=https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"'
   tags:
     - local-windows
