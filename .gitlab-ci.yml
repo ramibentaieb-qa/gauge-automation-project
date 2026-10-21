@@ -4,7 +4,7 @@ stages:
 test_job:
   stage: test
   script:
-    - "mvn gauge:execute -Dmaven.repo.local=C:/Users/RAMI/.m2/repository '-Dbase.url=https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'"
+    - 'mvn gauge:execute "-Dbase.url=https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"'
   tags:
     - local-windows
   artifacts:
