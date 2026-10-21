@@ -8,6 +8,8 @@ test_job:
   stage: test
   script:
     - mvn gauge:execute -Dbase.url="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+  tags:
+    - local-windows
   artifacts:
     when: always
     paths:
