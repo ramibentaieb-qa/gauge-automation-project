@@ -30,5 +30,5 @@ test_job:
     when: always
     paths:
       - target/surefire-reports/
-      - reports/
+      - reports/html-report/
     expire_in: 30 days
